@@ -21,12 +21,30 @@
     border-radius: .6rem;
   }
   
+ /* A4 responsivo */
+.cv-a4 {
+  width: 100%;
+  max-width: 794px;         /* ~A4 @96dpi */
+  aspect-ratio: 794 / 1123; /* mantém proporção em loaders esparsos */
+  min-height: 1123px;       /* manter altura em desktops */
+  margin-inline: auto;
+  background: #fff;
+}
+
+/* Em telas menores, permitir altura auto para evitar cortes */
+@media (max-width: 576px) {
   .cv-a4 {
-    width: 794px;   /* ~ A4 @ 96dpi */
-    min-height: 1123px;
-    margin-inline: auto;
-    color: #111827;
+    min-height: auto;
+    aspect-ratio: auto;
   }
+}
+
+/* Imagens no preview sempre responsivas */
+#cvPreview img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* evita espaços de linha */
+}
   
   .cv-section-title {
     font-weight: 600;
