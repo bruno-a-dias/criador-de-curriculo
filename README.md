@@ -1,10 +1,10 @@
 ✨ Acesse agora
-https://bruno-a-dias.github.io/curriculo-criativo-responsivo/
+https://bruno-a-dias.github.io/criador-de-curriculo/
 
 🧩 Criador de Currículo — Simples, Bonito e Rápido
 Crie um currículo moderno em poucos cliques: preencha as seções, personalize o layout e exporte em PDF ou DOCX — tudo direto no navegador, sem instalar nada. Este projeto foi feito com HTML, CSS, Bootstrap e JavaScript puro, focado em acessibilidade e conforto visual.
 
-🧭 Índice
+#🧭 Índice
 Sobre
 
 Demonstração
