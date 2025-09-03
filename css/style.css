@@ -1,0 +1,59 @@
+:root {
+    --bg-stone: #f6f3ee;
+    --text: #1f2328;
+    --muted: #6b7280;
+    --card: #ffffff;
+    --border: #e5e7eb;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  body.bg-stone {
+    background: var(--bg-stone);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card, .form-control, .btn {
+    border-radius: .6rem;
+  }
+  
+  .cv-a4 {
+    width: 794px;   /* ~ A4 @ 96dpi */
+    min-height: 1123px;
+    margin-inline: auto;
+    color: #111827;
+  }
+  
+  .cv-section-title {
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: .25rem;
+    margin-top: 1.25rem;
+    margin-bottom: .5rem;
+  }
+  
+  .cv-item { margin-bottom: .5rem; }
+  .cv-muted { color: #6b7280; }
+  
+  /* Dark mode */
+  .dark body {
+    background: #0f1115;
+    color: #e5e7eb;
+  }
+  .dark .card { background: #131722; color: #e5e7eb; }
+  .dark .form-control, .dark .btn, .dark .card { border-color: #2b3245; }
+  .dark .cv-a4 { background: #0d0f14; color: #e5e7eb; }
+  .dark .cv-section-title { color: #c8d1e6; border-color: #2b3245; }
+  
+  /* Impressão */
+  @media print {
+    header, footer, .nav, .card-header, #formTabs, #acoes, #secoes { display: none !important; }
+    body { background: #ffffff !important; }
+    .cv-a4 { box-shadow: none !important; width: auto; min-height: auto; }
+  }
+  

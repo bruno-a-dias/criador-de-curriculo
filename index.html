@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerador de Currículos</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones (opcional) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body class="bg-stone">
+
+    <header class="container py-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="h4 m-0">Gerador de Currículos</h1>
+        <div class="d-flex align-items-center gap-2">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="mockToggle" />
+            <label class="form-check-label" for="mockToggle">Mock data</label>
+          </div>
+          <button id="themeToggle" class="btn btn-outline-secondary btn-sm" aria-label="Alternar tema">
+            <i class="bi bi-moon"></i>
+          </button>
+        </div>
+      </div>
+      <p class="small text-muted mt-2">
+        Aviso de privacidade: os dados digitados não são armazenados ou enviados. Todo processamento ocorre localmente no navegador.
+      </p>
+    </header>
+
+    <main class="container pb-5">
+      <div class="row g-3">
+        <!-- Formulário -->
+        <section class="col-12 col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="formTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="dados-tab" data-bs-toggle="tab" data-bs-target="#dados" type="button" role="tab">Formulário</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="secoes-tab" data-bs-toggle="tab" data-bs-target="#secoes" type="button" role="tab">Seções</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="acoes-tab" data-bs-toggle="tab" data-bs-target="#acoes" type="button" role="tab">Ações</button>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body tab-content">
+              <!-- Form -->
+              <div class="tab-pane fade show active" id="dados" role="tabpanel" aria-labelledby="dados-tab">
+                <form id="cvForm" class="vstack gap-4">
+                  <!-- Dados Pessoais -->
+                  <section aria-labelledby="sec-pessoal">
+                    <h2 id="sec-pessoal" class="h6 mb-3">Dados Pessoais (obrigatório)</h2>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Nome completo</label>
+                        <input type="text" class="form-control" id="personal_name" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Cargo / Título</label>
+                        <input type="text" class="form-control" id="personal_role" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="personal_email" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="personal_phone" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Localização</label>
+                        <input type="text" class="form-control" id="personal_location" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Website/LinkedIn/GitHub</label>
+                        <input type="text" class="form-control" id="personal_website" />
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Resumo/Sobre</label>
+                        <textarea class="form-control" rows="3" id="personal_summary"></textarea>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Objetivo -->
+                  <section aria-labelledby="sec-objetivo">
+                    <h2 id="sec-objetivo" class="h6 mb-2">Objetivo Profissional</h2>
+                    <textarea class="form-control" rows="2" id="objective"></textarea>
+                  </section>
+
+                  <!-- Experiência -->
+                  <section aria-labelledby="sec-exp">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h2 id="sec-exp" class="h6 mb-2">Experiência Profissional (obrigatório)</h2>
+                      <button type="button" class="btn btn-sm btn-secondary" data-action="add-exp"><i class="bi bi-plus-lg me-1"></i>Adicionar</button>
+                    </div>
+                    <div id="experienceList" class="vstack gap-3"></div>
+                  </section>
+
+                  <!-- Educação -->
+                  <section aria-labelledby="sec-edu">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h2 id="sec-edu" class="h6 mb-2">Educação (obrigatório)</h2>
+                      <button type="button" class="btn btn-sm btn-secondary" data-action="add-edu"><i class="bi bi-plus-lg me-1"></i>Adicionar</button>
+                    </div>
+                    <div id="educationList" class="vstack gap-3"></div>
+                  </section>
+
+                  <!-- Habilidades -->
+                  <section aria-labelledby="sec-skill">
+                    <h2 id="sec-skill" class="h6 mb-2">Habilidades</h2>
+                    <div class="row g-3">
+                      <div class="col-12 col-md-6">
+                        <label class="form-label">Técnicas (vírgula)</label>
+                        <input type="text" class="form-control" id="skills_tech" />
+                      </div>
+                      <div className="col-12 col-md-6">
+                        <label class="form-label">Interpessoais (vírgula)</label>
+                        <input type="text" class="form-control" id="skills_soft" />
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Certificações -->
+                  <section aria-labelledby="sec-cert">
+                    <h2 id="sec-cert" class="h6 mb-2">Certificações</h2>
+                    <input type="text" class="form-control" id="certifications" placeholder="Separe por ponto e vírgula" />
+                  </section>
+
+                  <!-- Idiomas -->
+                  <section aria-labelledby="sec-lang">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h2 id="sec-lang" class="h6 mb-2">Idiomas</h2>
+                      <button type="button" class="btn btn-sm btn-secondary" data-action="add-lang"><i class="bi bi-plus-lg me-1"></i>Adicionar</button>
+                    </div>
+                    <div id="languagesList" class="vstack gap-3"></div>
+                  </section>
+
+                  <!-- Projetos -->
+                  <section aria-labelledby="sec-proj">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h2 id="sec-proj" class="h6 mb-2">Projetos</h2>
+                      <button type="button" class="btn btn-sm btn-secondary" data-action="add-proj"><i class="bi bi-plus-lg me-1"></i>Adicionar</button>
+                    </div>
+                    <div id="projectsList" class="vstack gap-3"></div>
+                  </section>
+
+                  <!-- Referências -->
+                  <section aria-labelledby="sec-ref">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h2 id="sec-ref" class="h6 mb-2">Referências</h2>
+                      <button type="button" class="btn btn-sm btn-secondary" data-action="add-ref"><i class="bi bi-plus-lg me-1"></i>Adicionar</button>
+                    </div>
+                    <div id="referencesList" class="vstack gap-3"></div>
+                  </section>
+                </form>
+              </div>
+
+              <!-- Seções toggle -->
+              <div class="tab-pane fade" id="secoes" role="tabpanel" aria-labelledby="secoes-tab">
+                <div class="row g-2">
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_objective" checked><label class="form-check-label" for="toggle_objective">Objetivo</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_experience" checked><label class="form-check-label" for="toggle_experience">Experiência</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_education" checked><label class="form-check-label" for="toggle_education">Educação</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_skills" checked><label class="form-check-label" for="toggle_skills">Habilidades</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_certifications" checked><label class="form-check-label" for="toggle_certifications">Certificações</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_languages" checked><label class="form-check-label" for="toggle_languages">Idiomas</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_projects" checked><label class="form-check-label" for="toggle_projects">Projetos</label></div></div>
+                  <div class="col-6 col-md-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="toggle_references" checked><label class="form-check-label" for="toggle_references">Referências</label></div></div>
+                </div>
+              </div>
+
+              <!-- Ações -->
+              <div class="tab-pane fade" id="acoes" role="tabpanel" aria-labelledby="acoes-tab">
+                <div class="d-grid d-md-flex gap-2">
+                  <button id="btnPdf" class="btn btn-primary"><i class="bi bi-filetype-pdf me-1"></i> Exportar PDF</button>
+                  <button id="btnDocx" class="btn btn-outline-primary"><i class="bi bi-filetype-docx me-1"></i> Exportar DOCX</button>
+                  <button id="btnPrint" class="btn btn-outline-secondary"><i class="bi bi-printer me-1"></i> Imprimir</button>
+                  <button id="btnNew" class="btn btn-outline-danger"><i class="bi bi-trash me-1"></i> Novo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Preview -->
+        <section class="col-12 col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <span>Preview</span>
+              <small class="text-muted">A4 preview</small>
+            </div>
+            <div class="card-body">
+              <div id="cvPreview" class="cv-a4 bg-white p-4 shadow-sm">
+                <!-- Render gerado por JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="container py-4 text-muted small">
+      Dica: para PDF com melhor qualidade, evite imagens externas sem CORS e mantenha bom contraste.
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- html2canvas + jsPDF -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+    <!-- docx -->
+    <script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
+
+    <!-- App -->
+    <script src="./js/app.js"></script>
+  </body>
+</html>
