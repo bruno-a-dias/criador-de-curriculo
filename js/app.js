@@ -362,7 +362,7 @@ document.getElementById("btnPdf").addEventListener("click", async () => {
   const node = document.getElementById("cvPreview");
 
   await pdf.html(node, {
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: getComputedStyle(node).backgroundColor || "#ffffff" },
+    html2canvas: { scale: 1, useCORS: true, backgroundColor: getComputedStyle(node).backgroundColor || "#ffffff" },
     margin: [36, 36, 36, 36],
     autoPaging: "text",
     windowWidth: node.scrollWidth, // mantém proporção baseada na largura real do preview
